@@ -395,7 +395,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // You can also adjust the logo's position if needed
             // logo.position.x = 0;  // left/right
-            logo.position.y = 0.35;  // up/down
+            logo.position.y = 0.55;  // up/down
             // logo.position.z = 0;  // forward/backward
 
             // Trigger initial resize to set correct size for current screen
@@ -458,8 +458,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Smooth rotation with lerp
             // Higher lerp value = faster rotation but less smooth
             // Lower lerp value = slower rotation but smoother
-            logo.rotation.x += (targetRotation - logo.rotation.x) * 0.01;
-            logo.rotation.y += (targetRotation - logo.rotation.y) * 0.01;
+            logo.rotation.y += (targetRotation - logo.rotation.y) * 0.02;
             
             // Example of multi-axis rotation:
             // logo.rotation.x += (targetRotationX - logo.rotation.x) * 0.05;

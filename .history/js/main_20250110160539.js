@@ -374,8 +374,8 @@ document.addEventListener('DOMContentLoaded', function() {
             const material = new THREE.MeshStandardMaterial({
                 map: texture,
                 transparent: true,
-                side: THREE.SingleSide,
-                opacity: 0.9
+                side: THREE.SingleSide
+                
             });
 
             // Create plane geometry for the logo
@@ -395,7 +395,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // You can also adjust the logo's position if needed
             // logo.position.x = 0;  // left/right
-            logo.position.y = 0.35;  // up/down
+            logo.position.y = 0.55;  // up/down
             // logo.position.z = 0;  // forward/backward
 
             // Trigger initial resize to set correct size for current screen
@@ -424,10 +424,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 let baseSize = 5; // Default size for desktop
 
                 // Adjust size for mobile devices
-                if (window.innerWidth < 500) {
-                    baseSize = 2.6; // Extra small size for very small screens
-                } else if (window.innerWidth < 768) {
+                if (window.innerWidth < 768) {
                     baseSize = 3; // Smaller size for mobile
+                if (window.innerWidth < 500) {
+                        baseSize = 2; // Smaller size for mobile
                 } else if (window.innerWidth < 1024) {
                     baseSize = 4; // Medium size for tablets
                 }
@@ -455,10 +455,11 @@ document.addEventListener('DOMContentLoaded', function() {
         requestAnimationFrame(animate);
         
         if (logo) {
-            // Smooth rotation with lerp
-            // Higher lerp value = faster rotation but less smooth
-            // Lower lerp value = slower rotation but smoother
-            logo.rotation.x += (targetRotation - logo.rotation.x) * 0.01;
+            // Rotation axis: .x, .y, or .z
+            // Lerp factor: 0.05 - adjust for different speeds
+            // - Higher values (e.g., 0.1) = faster but less smooth
+            // - Lower values (e.g., 0.01) = slower but smoother
+            logo.rotation.x += (targetRotation - logo.rotation.y) * 0.01;
             logo.rotation.y += (targetRotation - logo.rotation.y) * 0.01;
             
             // Example of multi-axis rotation:
