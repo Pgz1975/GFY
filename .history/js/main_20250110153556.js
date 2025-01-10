@@ -1,5 +1,3 @@
-import * as THREE from 'three';
-
 document.addEventListener('DOMContentLoaded', function() {
     // Add menu toggle button to nav with animation states
     const nav = document.querySelector('.main-nav');
