@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .logo-container {
+            perspective: 1000px;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            cursor: move;
+            padding: 40px;
+        }
+
+        .logo-3d {
+            transform-style: preserve-3d;
+            transition: transform 0.5s ease;
+            transform: rotateX(20deg) rotateY(0deg);
+            position: relative;
+        }
+
+        .logo-3d svg {
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 20px 30px rgba(0,0,0,0.15));
+        }
+
+        /* Interactive hover effect */
+        .logo-container:hover .logo-3d {
+            transform: rotateX(30deg) rotateY(10deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="logo-container">
+        <div class="logo-3d">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                viewBox="765 502 390 409" style="enable-background:new 765 502 390 409;">
+                <g>
+                    <defs>
+                        <rect id="SVGID_1" x="765.31" y="502.46" width="389.38" height="408.34"/>
+                    </defs>
+                    <clipPath id="SVGID_2">
+                        <use xlink:href="#SVGID_1" style="overflow:visible;"/>
+                    </clipPath>
+                    <path style="clip-path:url(#SVGID_2);fill:#444444;" d="M862.04,734.51
+                        c1.54,0,2.99-0.6,4.08-1.69l4.08-4.08l-4.08-4.08c-1.09-1.09-2.54-1.69-4.08-1.69c-1.54,0-2.99,0.6-4.08,1.69
+                        c-2.25,2.25-2.25,5.9,0,8.15C859.05,733.91,860.5,734.51,862.04,734.51"/>
+                    <path style="clip-path:url(#SVGID_2);fill:#444444;" d="M882.32,717.49
+                        l4.08-4.08c2.25-2.25,2.25-5.91,0-8.15c-1.09-1.09-2.54-1.69-4.08-1.69c-1.54,0-2.99,0.6-4.08,1.69
+                        c-1.09,1.09-1.69,2.54-1.69,4.08s0.6,2.99,1.69,4.08L882.32,717.49z"/>
+                    <path style="clip-path:url(#SVGID_2);fill:#444444;" d="M1154.45,601.64
+                        c-0.16-12.63-0.32-25.69-0.2-38.46c0.03-2.71,0-5.46,0-5.46c-0.1-0.13,0.11-0.28,0-0.45v-3.06h-28.28
+                        c-0.09-15.03-0.14-36.14-0.07-44.08c0.02-2.31,0-4.66,0-4.66c-0.09-0.11,0.09-0.24,0-0.38v-2.61H963.02V670.1h152.63h8.14h16.54
+                        c-0.14,2.45-0.21,4.91-0.39,7.34h-17.13h-5.99h-153.8v177.61h65.3c-2.72,1.64-6.94,4.21-12.03,7.34H903.71
+                        c-2.21-1.3-4.41-2.63-6.64-3.9c-1.97-1.12-3.84-2.3-5.75-3.45h65.52V677.44H779.29c0.05,0.98,0.09,1.95,0.16,2.93h18.4
+                        c0.47,2.43,1.01,4.88,1.58,7.34h-19.28c-0.58-5.22-1.02-10.37-1.14-15.37c-0.63-26.08-0.52-51.69-0.39-78.81
+                        c0.04-8.65,0.08-17.36,0.09-26.13h15.53c-0.01,2.3-0.02,4.74-0.02,7.28h-15.39v2.93h15.39c-0.01,2.38-0.01,4.83-0.02,7.34h-15.37
+                        v2.93h15.37c0,2.41,0,4.86,0,7.34h-15.36v2.93h15.36c0,2.44,0,4.89,0.01,7.34h-15.37v2.93h15.37c0,2.46,0.01,4.91,0.02,7.34h-15.4
+                        v2.93h15.41c0.01,2.49,0.02,4.94,0.04,7.34h-15.45V629h15.47c0.02,2.52,0.04,4.98,0.07,7.34h-15.53v2.93h15.57
+                        c0.03,2.59,0.07,5.05,0.11,7.34h-15.68v2.93h15.73c0.02,0.71,0.03,1.4,0.05,2.06c0.04,1.74,0.12,3.51,0.23,5.28h-16.01v2.93h16.21
+                        c0.19,2.42,0.43,4.87,0.73,7.34h-16.85c0.02,0.98,0.03,1.95,0.05,2.93h177.87V502.46H794.36v5.63c0,7.84-0.03,32.77-0.06,46.11
+                        h-28.79v6.6c0,10.99-0.05,21.86-0.1,32.67c-0.13,27.22-0.24,52.92,0.39,79.19c0.36,14.56,2.54,30.03,6.51,45.95
+                        c16.15,64.86,55.92,115.78,118.21,151.35c14.85,8.49,29.58,17.94,43.83,27.08c6.65,4.28,13.31,8.55,20,12.74l1.61,1.01h9.48
+                        l1.66-1.74c4.59-3.38,47.32-30.27,68.65-43.07c69.98-41.97,109.19-101.35,116.56-176.48
+                        C1155.17,660.3,1154.81,630.48,1154.45,601.64 M1085.08,606.97h-37.76l-10.15-10.15l-10.15,10.15h-37.76v-10.33h32.24
+                        l-21.86-21.86l7.31-7.3l25.06,25.06V557.1h10.33v35.44l25.06-25.06l7.31,7.3l-21.86,21.86h32.24V606.97z M846.92,548.72h64.49
+                        v66.72l-32.24-15.55l-32.24,15.55V548.72z M851.96,718.67c2.78-2.78,6.43-4.17,10.08-4.17c2.98,0,5.95,0.94,8.45,2.8
+                        c-3.73-5.54-3.15-13.13,1.75-18.03c2.78-2.78,6.43-4.17,10.08-4.17s7.3,1.39,10.08,4.17c4.92,4.92,5.48,12.53,1.72,18.07
+                        c2.5-1.83,5.45-2.76,8.41-2.76c3.65,0,7.3,1.39,10.08,4.18c5.57,5.57,5.57,14.59,0,20.16c-2.78,2.78-6.43,4.17-10.08,4.17
+                        c-3.65,0-7.3-1.39-10.08-4.17l-5.37-5.37v26.26h6.67v8.49h-16.04v-8.49h0v-26.56l-5.59,5.59c-2.78,2.78-6.43,4.18-10.08,4.18
+                        s-7.3-1.39-10.08-4.18C846.39,733.26,846.39,724.23,851.96,718.67"/>
+                </g>
+            </svg>
+        </div>
+    </div>
+
+    <script>
+        // Add interactive rotation based on mouse movement
+        const container = document.querySelector('.logo-container');
+        const logo = document.querySelector('.logo-3d');
+        let isMouseDown = false;
+        let startX, startY;
+        let rotateX = 20;
+        let rotateY = 0;
+
+        container.addEventListener('mousedown', (e) => {
+            isMouseDown = true;
+            startX = e.pageX - container.offsetLeft;
+            startY = e.pageY - container.offsetTop;
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (!isMouseDown) return;
+
+            const x = e.pageX - container.offsetLeft;
+            const y = e.pageY - container.offsetTop;
+
+            const deltaX = x - startX;
+            const deltaY = y - startY;
+
+            rotateY = deltaX * 0.5;
+            rotateX = 20 + (deltaY * 0.5);
+
+            logo.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        });
+
+        document.addEventListener('mouseup', () => {
+            isMouseDown = false;
+        });
+    </script>
+</body>
+</html>

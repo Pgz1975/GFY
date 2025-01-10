@@ -347,7 +347,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Create camera
         camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        camera.position.z = 3;
+        camera.position.z = 5;
 
         // Create renderer
         renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
@@ -377,23 +377,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Create plane geometry for the logo
             const aspect = texture.image.width / texture.image.height;
-            // Adjust size here: width = 4 * aspect, height = 4
-            // Increase/decrease these numbers to change logo size
-            const geometry = new THREE.PlaneGeometry(5 * aspect, 5);
+            const geometry = new THREE.PlaneGeometry(4 * aspect, 4);
             
             // Create mesh
             logo = new THREE.Mesh(geometry, material);
             scene.add(logo);
 
-            // Initial rotations
-            logo.rotation.y = Math.PI * 0.15;  // Y rotation (left/right)
-            logo.rotation.z = Math.PI * -0.15;   // Z rotation (tilt)
-            logo.rotation.x = Math.PI * 0.0;  // X rotation (up/down)
-
-            // You can also adjust the logo's position if needed
-            // logo.position.x = 0;  // left/right
-            // logo.position.y = 0;  // up/down
-            // logo.position.z = 0;  // forward/backward
+            // Initial rotation to match BG.png
+            logo.rotation.y = Math.PI * 0.15;
         });
 
         // Handle window resize for 3D scene
@@ -417,31 +408,15 @@ document.addEventListener('DOMContentLoaded', function() {
     function onThreeJSScroll() {
         if (!logo) return;
         const scrollPercent = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
-        
-        // Rotation amount: Math.PI * 2 = one full rotation
-        // Increase the multiplier for more rotations
-        // Use negative value to reverse direction
-        targetRotation = Math.PI * -4 * scrollPercent;
-
-        // You can also combine multiple axis rotations
-        // targetRotationX = Math.PI * scrollPercent; // Half rotation on X axis
-        // targetRotationZ = Math.PI * 0.5 * scrollPercent; // Quarter rotation on Z axis
+        targetRotation = Math.PI * 2 * scrollPercent;
     }
 
     function animate() {
         requestAnimationFrame(animate);
         
         if (logo) {
-            // Rotation axis: .x, .y, or .z
-            // Lerp factor: 0.05 - adjust for different speeds
-            // - Higher values (e.g., 0.1) = faster but less smooth
-            // - Lower values (e.g., 0.01) = slower but smoother
-            logo.rotation.x += (targetRotation - logo.rotation.y) * 0.01;
-            logo.rotation.y += (targetRotation - logo.rotation.y) * 0.01;
-            
-            // Example of multi-axis rotation:
-            // logo.rotation.x += (targetRotationX - logo.rotation.x) * 0.05;
-            // logo.rotation.z += (targetRotationZ - logo.rotation.z) * 0.05;
+            // Smooth rotation
+            logo.rotation.y += (targetRotation - logo.rotation.y) * 0.05;
         }
         
         renderer.render(scene, camera);

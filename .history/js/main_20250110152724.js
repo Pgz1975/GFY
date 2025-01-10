@@ -379,7 +379,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const aspect = texture.image.width / texture.image.height;
             // Adjust size here: width = 4 * aspect, height = 4
             // Increase/decrease these numbers to change logo size
-            const geometry = new THREE.PlaneGeometry(5 * aspect, 5);
+            const geometry = new THREE.PlaneGeometry(4 * aspect, 4);
             
             // Create mesh
             logo = new THREE.Mesh(geometry, material);
@@ -387,8 +387,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Initial rotations
             logo.rotation.y = Math.PI * 0.15;  // Y rotation (left/right)
-            logo.rotation.z = Math.PI * -0.15;   // Z rotation (tilt)
-            logo.rotation.x = Math.PI * 0.0;  // X rotation (up/down)
+            logo.rotation.z = Math.PI * -0.1;   // Z rotation (tilt)
+            logo.rotation.x = Math.PI * 0.05;  // X rotation (up/down)
 
             // You can also adjust the logo's position if needed
             // logo.position.x = 0;  // left/right
@@ -421,7 +421,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Rotation amount: Math.PI * 2 = one full rotation
         // Increase the multiplier for more rotations
         // Use negative value to reverse direction
-        targetRotation = Math.PI * -4 * scrollPercent;
+        targetRotation = Math.PI * 10 * scrollPercent;
 
         // You can also combine multiple axis rotations
         // targetRotationX = Math.PI * scrollPercent; // Half rotation on X axis
@@ -436,8 +436,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Lerp factor: 0.05 - adjust for different speeds
             // - Higher values (e.g., 0.1) = faster but less smooth
             // - Lower values (e.g., 0.01) = slower but smoother
-            logo.rotation.x += (targetRotation - logo.rotation.y) * 0.01;
-            logo.rotation.y += (targetRotation - logo.rotation.y) * 0.01;
+            logo.rotation.x += (targetRotation - logo.rotation.y) * -0.01;
             
             // Example of multi-axis rotation:
             // logo.rotation.x += (targetRotationX - logo.rotation.x) * 0.05;

@@ -379,7 +379,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const aspect = texture.image.width / texture.image.height;
             // Adjust size here: width = 4 * aspect, height = 4
             // Increase/decrease these numbers to change logo size
-            const geometry = new THREE.PlaneGeometry(5 * aspect, 5);
+            const geometry = new THREE.PlaneGeometry(4 * aspect, 4);
             
             // Create mesh
             logo = new THREE.Mesh(geometry, material);
