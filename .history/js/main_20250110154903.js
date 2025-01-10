@@ -361,7 +361,7 @@ document.addEventListener('DOMContentLoaded', function() {
         container.appendChild(renderer.domElement);
 
         // Add lights
-        const ambientLight = new THREE.AmbientLight(0xffffff, 0.3);
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.2);
         scene.add(ambientLight);
 
         const directionalLight = new THREE.DirectionalLight(0xffffff, 0.2);
@@ -395,7 +395,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // You can also adjust the logo's position if needed
             // logo.position.x = 0;  // left/right
-            logo.position.y = 0.5;  // up/down
+            // logo.position.y = 0;  // up/down
             // logo.position.z = 0;  // forward/backward
         });
 

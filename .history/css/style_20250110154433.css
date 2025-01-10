@@ -165,7 +165,7 @@ h2 {
     bottom: 0;
     background: radial-gradient(circle at center, rgba(158, 255, 0, 0.15) 0%, transparent 70%);
     z-index: 1;
-    animation: pulse 3s ease-in-out infinite;
+    animation: pulse 2s ease-in-out infinite;
 }
 
 @keyframes pulse {

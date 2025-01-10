@@ -395,7 +395,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // You can also adjust the logo's position if needed
             // logo.position.x = 0;  // left/right
-            logo.position.y = 0.5;  // up/down
+            // logo.position.y = 0;  // up/down
             // logo.position.z = 0;  // forward/backward
         });
 
