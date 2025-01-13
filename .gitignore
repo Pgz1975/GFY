@@ -39,6 +39,7 @@ yarn-error.log*
 .temp/
 .tmp/
 .sass-cache/
+.history/
 
 # OS generated files
 .DS_Store
