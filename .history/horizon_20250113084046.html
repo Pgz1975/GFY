@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        canvas {
+            width: 100vw;
+            height: 100vh;
+            background: #f5f5f5;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="horizonCanvas"></canvas>
+    <script>
+        // Core canvas setup
+        const canvas = document.getElementById('horizonCanvas');
+        const ctx = canvas.getContext('2d');
+
+        // Visual parameters - easily adjustable
+        const params = {
+            // Colors represent different layers of knowledge/exploration
+            colors: [
+                'rgba(41, 128, 185, 0.4)',  // Light blue - surface knowledge
+                'rgba(52, 152, 219, 0.5)',  // Medium blue - deeper understanding
+                'rgba(26, 188, 156, 0.6)',  // Teal - wisdom
+                'rgba(22, 160, 133, 0.7)'   // Deep teal - profound insights
+            ],
+            
+            // Motion and shape parameters
+            layers: 4,                    // Number of overlapping horizons
+            smoothness: 0.002,           // Base: How smooth the curves are
+            amplitude: 0.05,             // Base: Height of the waves
+            evolution: 0.003,           // Base: Speed of change
+            complexity: 10,              // Base: Complexity of the patterns
+            variationSpeed: 0.001,       // Speed of parameter variation (lower = slower)
+            
+            // Visual style
+            lineWidth: 10,
+            tension: 1.4,                // How "taught" the curves are
+        };
+
+        // Set up high-DPI canvas
+        function setupCanvas() {
+            const dpr = window.devicePixelRatio || 1;
+            const rect = canvas.getBoundingClientRect();
+            canvas.width = rect.width * dpr;
+            canvas.height = rect.height * dpr;
+            ctx.scale(dpr, dpr);
+            canvas.style.width = `${rect.width}px`;
+            canvas.style.height = `${rect.height}px`;
+        }
+
+        // Improved Perlin noise function for smooth natural movement
+        function improvedNoise(x, y) {
+            const X = Math.floor(x) & 255;
+            const Y = Math.floor(y) & 255;
+            x -= Math.floor(x);
+            y -= Math.floor(y);
+            
+            // Smooth interpolation
+            const u = fade(x);
+            const v = fade(y);
+            
+            // Calculate gradients
+            const a = p[X]+Y;
+            const b = p[X+1]+Y;
+            
+            return lerp(
+                lerp(grad(p[a], x, y), grad(p[b], x-1, y), u),
+                lerp(grad(p[a+1], x, y-1), grad(p[b+1], x-1, y-1), u),
+                v
+            );
+        }
+
+        // Helper functions for noise generation
+        function fade(t) { return t * t * t * (t * (t * 6 - 15) + 10); }
+        function lerp(a, b, t) { return (1 - t) * a + t * b; }
+        function grad(hash, x, y) {
+            const h = hash & 15;
+            const grad = 1 + (h & 7);
+            return ((h & 8) ? -grad : grad) * x + ((h & 4) ? -grad : grad) * y;
+        }
+
+        // Generate permutation table for noise
+        const p = new Array(512);
+        for(let i = 0; i < 256; i++) p[i] = p[i + 256] = Math.floor(Math.random() * 256);
+
+        // Draw a single horizon layer
+        function drawHorizon(offset, color, time) {
+            ctx.beginPath();
+            ctx.moveTo(0, canvas.height * 0.3);
+
+            // Generate points for the curve
+            const points = [];
+            for(let x = 0; x <= canvas.width; x += canvas.width/50) {
+                const xPos = x / canvas.width;
+                const yNoise = improvedNoise(
+                    xPos * params.currentComplexity + time * params.currentEvolution,
+                    offset
+                ) * params.currentAmplitude;
+                
+                points.push({
+                    x: x,
+                    y: canvas.height * (0.5 + yNoise)
+                });
+            }
+
+            // Draw smooth curve through points
+            ctx.beginPath();
+            ctx.moveTo(points[0].x, points[0].y);
+            
+            for(let i = 1; i < points.length - 2; i++) {
+                const xc = (points[i].x + points[i + 1].x) / 2;
+                const yc = (points[i].y + points[i + 1].y) / 2;
+                ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+            }
+            
+            // Connect to bottom
+            ctx.lineTo(canvas.width, canvas.height);
+            ctx.lineTo(0, canvas.height);
+            ctx.closePath();
+
+            // Fill with gradient
+            const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+            gradient.addColorStop(0, color);
+            gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
+            ctx.fillStyle = gradient;
+            ctx.fill();
+        }
+
+        // Animation loop
+        let time = 0;
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Calculate varying parameters based on time
+            params.currentSmoothing = params.smoothness * (1 + 0.5 * Math.sin(time * params.variationSpeed));
+            params.currentAmplitude = params.amplitude * (1 + 0.3 * Math.sin(time * params.variationSpeed * 0.7));
+            params.currentEvolution = params.evolution * (1 + 0.4 * Math.sin(time * params.variationSpeed * 1.3));
+            params.currentComplexity = params.complexity * (1 + 0.2 * Math.sin(time * params.variationSpeed * 0.5));
+            
+            // Draw each layer of the horizon using current parameters
+            for(let i = 0; i < params.layers; i++) {
+                drawHorizon(
+                    i * params.currentSmoothing,
+                    params.colors[i],
+                    time + i * 100
+                );
+            }
+            
+            time += 1;
+            requestAnimationFrame(animate);
+        }
+
+        // Initialize and start
+        setupCanvas();
+        window.addEventListener('resize', setupCanvas);
+        animate();
+    </script>
+</body>
+</html>

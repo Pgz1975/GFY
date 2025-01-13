@@ -82,9 +82,8 @@ h2 {
 
 .nav-links {
     display: flex;
-    gap: 3rem;
+    gap: 2rem;
     list-style: none;
-    align-items: center;
 }
 
 .nav-links a {
@@ -126,16 +125,11 @@ h2 {
     color: var(--primary-green) !important;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 5px;
     padding: 0.5rem 1rem;
     border-radius: 4px;
     transition: all 0.3s ease;
     text-decoration: none !important;
-    font-weight: 500;
-}
-
-.nav-links .dropdown-trigger:hover {
-    background: rgba(158, 255, 0, 0.1);
 }
 
 .nav-links .dropdown-trigger::after {
@@ -153,19 +147,18 @@ h2 {
 
 .nav-links .dropdown-menu {
     position: absolute;
-    top: calc(100% + 5px);
+    top: 100%;
     left: 0;
-    background: rgba(0, 0, 0, 0.95);
-    min-width: 220px;
+    background: rgba(0, 0, 0, 0.9);
+    min-width: 200px;
     padding: 10px 0;
-    border-radius: 8px;
+    border-radius: 4px;
     opacity: 0;
     visibility: hidden;
     transform: translateY(10px);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.3s ease;
     border: 1px solid rgba(158, 255, 0, 0.1);
     backdrop-filter: blur(10px);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
 .nav-links .dropdown:hover .dropdown-menu {
@@ -176,15 +169,13 @@ h2 {
 
 .nav-links .dropdown-menu li {
     padding: 0;
-    list-style: none;
 }
 
 .nav-links .dropdown-menu a {
     color: white !important;
-    padding: 10px 20px;
+    padding: 8px 20px;
     display: block;
     transition: all 0.3s ease;
-    font-size: 0.95rem;
 }
 
 .nav-links .dropdown-menu a::after {
@@ -193,8 +184,7 @@ h2 {
 
 .nav-links .dropdown-menu a:hover {
     background-color: rgba(158, 255, 0, 0.1);
-    color: var(--primary-green) !important;
-    padding-left: 25px;
+    color: var(--primary-green);
 }
 
 .menu-toggle {
