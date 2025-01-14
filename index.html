@@ -1,6 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="css/cookie-consent.css">
+    <script src="js/cookie-consent.js"></script>
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-60PRKVZEXM"></script>
+    <script>
+      // Check for cookie consent before initializing GA
+      const consent = document.cookie.match('(^|;)\\s*cookie_consent\\s*=\\s*([^;]+)');
+      window['ga-disable-G-60PRKVZEXM'] = !(consent && consent[2] === 'accepted');
+      
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-60PRKVZEXM');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Greenfinity - The ESG A.I. Academy</title>
@@ -65,7 +80,7 @@
             <h1>The ESG A.I. Academy Empowering a Sustainable Future</h1>
             <p>New horizons are our inspiration. Edu-tech is our answer.</p>
             <div class="cta-buttons">
-                <a href="#contact" class="cta-primary">Get Started</a>
+                <a href="#offerings" class="cta-primary">Get Started</a>
                 <a href="#about" class="cta-secondary">Learn More</a>
             </div>
         </div>
