@@ -400,7 +400,8 @@
         <div class="container">
             <h2>Contact Us</h2>
             <div class="contact-wrapper">
-                <form class="contact-form" action="mailto:pierre@maestrai.com" method="post" enctype="text/plain">
+            <form class="contact-form" action="process-form.php" method="post" id="contactForm">
+                <div id="formMessage" class="form-message"></div>
                     <input type="text" name="name" placeholder="Name" required>
                     <input type="email" name="email" placeholder="Email" required>
                     <select name="interest" required>
@@ -462,5 +463,46 @@
     </footer>
 
     <script type="module" src="js/main.js"></script>
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            fetch('process-form.php', {
+                method: 'POST',
+                body: new FormData(this)
+            })
+            .then(response => {
+                if (response.ok) {
+                    document.getElementById('formMessage').className = 'form-message success';
+                    document.getElementById('formMessage').textContent = 'Message sent successfully!';
+                    this.reset();
+                } else {
+                    throw new Error('Failed to send message');
+                }
+            })
+            .catch(error => {
+                document.getElementById('formMessage').className = 'form-message error';
+                document.getElementById('formMessage').textContent = 'Failed to send message. Please try again.';
+            });
+        });
+    </script>
+    <style>
+        .form-message {
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            display: none;
+        }
+        .form-message.success {
+            display: block;
+            background-color: #9eff00;
+            color: #000;
+        }
+        .form-message.error {
+            display: block;
+            background-color: #ff3a21;
+            color: #fff;
+        }
+    </style>
 </body>
 </html>
