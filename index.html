@@ -32,6 +32,7 @@
                     <a href="#" class="dropdown-trigger">Education <i class="fas fa-chevron-down"></i></a>
                     <ul class="dropdown-menu">
                         <li><a href="#offerings">Our Offerings</a></li>
+                        <li><a href="#job-services">Job Services</a></li>
                         <li><a href="#nonprofit">Non-Profit Solutions</a></li>
                         <li><a href="#sponsorship">Sponsorships</a></li>
                     </ul>
@@ -330,6 +331,27 @@
         </div>
     </section>
 
+    <!-- AI Job Services Section -->
+    <section id="job-services" class="ai-education">
+        <div class="container">
+            <h2>AI Job Services for Students</h2>
+            <div class="features">
+                <div class="feature">
+                    <h3><i class="fas fa-file-alt" style="color: #9eff00; margin-right: 10px;"></i>CV Enhancement</h3>
+                    <p>Our AI-powered system assists students in updating and optimizing their CVs to highlight their sustainability expertise and skills</p>
+                </div>
+                <div class="feature">
+                    <h3><i class="fas fa-comments" style="color: #9eff00; margin-right: 10px;"></i>Interview Preparation</h3>
+                    <p>Comprehensive AI support in preparing for job interviews, helping students present their ESG competencies effectively</p>
+                </div>
+                <div class="feature">
+                    <h3><i class="fas fa-network-wired" style="color: #9eff00; margin-right: 10px;"></i>Marketplace Connection</h3>
+                    <p>Access to Greenfinity's marketplace platform, connecting talented students with companies seeking sustainability expertise</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Parallax Divider 3 -->
     <div class="parallax-divider" style="background-image: url('images/B.jpeg');">
         <div class="parallax-content">
@@ -434,6 +456,7 @@
                         <h4>Education</h4>
                         <ul>
                             <li><a href="#offerings">Our Offerings</a></li>
+                            <li><a href="#job-services">Job Services</a></li>
                             <li><a href="#nonprofit">Non-Profit Solutions</a></li>
                             <li><a href="#sponsorship">Sponsorships</a></li>
                         </ul>
@@ -467,22 +490,39 @@
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
+            // Show loading state
+            const formMessage = document.getElementById('formMessage');
+            formMessage.className = 'form-message info';
+            formMessage.textContent = 'Sending message...';
+            
             fetch('process-form.php', {
                 method: 'POST',
                 body: new FormData(this)
             })
             .then(response => {
                 if (response.ok) {
-                    document.getElementById('formMessage').className = 'form-message success';
-                    document.getElementById('formMessage').textContent = 'Message sent successfully!';
+                    formMessage.className = 'form-message success';
+                    formMessage.textContent = 'Message sent successfully! We will get back to you soon.';
                     this.reset();
                 } else {
-                    throw new Error('Failed to send message');
+                    return response.text().then(text => {
+                        throw new Error(text || 'Failed to send message');
+                    });
                 }
             })
             .catch(error => {
-                document.getElementById('formMessage').className = 'form-message error';
-                document.getElementById('formMessage').textContent = 'Failed to send message. Please try again.';
+                formMessage.className = 'form-message error';
+                if (error.message.includes('Name must be')) {
+                    formMessage.textContent = 'Please enter a name with at least 2 characters.';
+                } else if (error.message.includes('valid email')) {
+                    formMessage.textContent = 'Please enter a valid email address.';
+                } else if (error.message.includes('Message must be')) {
+                    formMessage.textContent = 'Please enter a message with at least 10 characters.';
+                } else if (error.message.includes('select a valid interest')) {
+                    formMessage.textContent = 'Please select your area of interest.';
+                } else {
+                    formMessage.textContent = error.message || 'Failed to send message. Please try again.';
+                }
             });
         });
     </script>
@@ -501,6 +541,11 @@
         .form-message.error {
             display: block;
             background-color: #ff3a21;
+            color: #fff;
+        }
+        .form-message.info {
+            display: block;
+            background-color: #0097e6;
             color: #fff;
         }
     </style>
